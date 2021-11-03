@@ -10,15 +10,31 @@ class CreateNewUser extends React.Component {
   };
 
   handleFirstName = event => {
-    this.setState({ firstName: event.target.value });
+    
+    this.setState({
+      user: {
+        ...this.state.user,
+        firstName: event.target.value
+      }
+    })
   };
   
   handleLastName = event => {
-    this.setState({ lastName: event.target.value });
+    this.setState({
+      user: {
+        ...this.state.user,
+        lastName: event.target.value
+      }
+    })
   };
   
   handleUserName = event => {
-    this.setState({ username: event.target.value });
+    this.setState({
+      user: {
+        ...this.state.user,
+        username: event.target.value
+      }
+    })
   };
 
   addUser = event => {
