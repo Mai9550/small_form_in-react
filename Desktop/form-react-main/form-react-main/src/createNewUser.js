@@ -7,6 +7,7 @@ class CreateNewUser extends React.Component {
       lastName: '',
       username: '',
     },
+    
   };
 
   handleFirstName = event => {
@@ -41,9 +42,26 @@ class CreateNewUser extends React.Component {
    
     this.props.onAdding(this.state.user);
   };
+
+ 
+
+  handleToggleEnd() {
+    this.props.onToggle()
+  }
  
 
   render() {
+
+    const ToggleIn = this.state.ToggleIn;
+    let button;
+    if (ToggleIn) {
+      button =   <button class="w3-btn w3-blue-grey" onClick={this.addUser} >Register</button>
+  
+    } else {
+
+      button = <LoginButton onClick={this.handleToggleEnd()} />;
+    }
+
     return (
       <div>
             <label>First Name</label>
@@ -66,11 +84,19 @@ class CreateNewUser extends React.Component {
         value={this.state.user.username}
         onChange={this.handleUserName}/>
 
-<button class="w3-btn w3-blue-grey" onClick={this.addUser} >Register</button>
+        {button}
 
-         <button class="w3-btn w3-blue-grey">Cancel</button>
+        
       </div>
+
+      
     );
+    
+    function LoginButton(props) {
+      return (
+        <button class="w3-btn w3-blue-grey">Cancel</button>
+      );
+    }
   }
 }
 

@@ -15,12 +15,19 @@ class App extends Component {
   
   state = {
    users: [],
+   ToggleIn:true
+
   };
   
   addUser=(user)=> {
   this.setState(prevState=>({users:[...prevState.users,user]}))
+  this.setState({ToggleIn: false});
   }
   
+  handleToggleEnd=()=> {
+    this.setState(prevState=>({ToggleIn:true}));
+  }
+
   handleSubmit=(event)=> {  
     event.preventDefault();
   }
@@ -28,6 +35,8 @@ class App extends Component {
   addNames=(name)=>{
   this.setState(prevState=>({names:[...prevState.names,name]}))
   }
+
+ 
   
   
   
@@ -36,7 +45,7 @@ class App extends Component {
     return ( 
       <div>
       <form class="form-container"  onSubmit={this.handleSubmit}>
-         <CreateNewUser onAdding={this.addUser} />
+         <CreateNewUser onAdding={this.addUser} onToggle={this.handleToggleEnd} />
          
 
       </form>
