@@ -63,7 +63,9 @@ class CreateNewUser extends React.Component {
 
     const ToggleIn = this.state.ToggleIn;
     if (!ToggleIn) {
-      button =   <button class="w3-btn w3-blue-grey" onClick={this.addUser}  onClick={()=>this.handleToggleStart()} >Register</button>
+      button =   <button class="w3-btn w3-blue-grey" onClick={() => {
+        this.handleToggleStart();
+      }} >Hide number of games played</button>
   
     } else {
   
@@ -92,9 +94,11 @@ class CreateNewUser extends React.Component {
         value={this.state.user.username}
         onChange={this.handleUserName}/>
 
-        {button}
+<button class="w3-btn w3-blue-grey" onClick={() => {
+        this.addUser();
+      }} >Register</button>
 
-        
+        {button}
       </div>
 
       
@@ -102,7 +106,7 @@ class CreateNewUser extends React.Component {
     
     function LoginButton(props) {
       return (
-        <button class="w3-btn w3-blue-grey">Cancel</button>
+        <button class="w3-btn w3-blue-grey">Show number of games played</button>
       );
     }
   }

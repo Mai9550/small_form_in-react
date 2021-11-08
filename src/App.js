@@ -46,9 +46,27 @@ class App extends Component {
          
 
       </form>
-<ol>
-{this.state.users.map((item, index) => <li key={index}>{item.firstName}</li>)}
+      <table>
+  <tr>
+    <th>Name</th>
+    <th>UserName</th>
+  </tr>
+  <tr>
+  <td>
+    <ol>
+{this.state.users.map((item, index) => <li key={index}>{item.firstName}{item.lastName}</li>)}
 </ol>
+</td>
+<td>
+  <ol>
+{this.state.users.map((item, index) => <li key={index}>{item.username}</li>)}
+</ol>
+</td>
+    
+  </tr>
+  
+</table>
+
 </div>
     );
 
