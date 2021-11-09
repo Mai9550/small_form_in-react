@@ -15,7 +15,6 @@ class App extends Component {
   
   state = {
    users: [],
-
   };
   
   addUser=(user)=> {
@@ -29,8 +28,8 @@ class App extends Component {
     event.preventDefault();
   }
   
-  addNames=(name)=>{
-  this.setState(prevState=>({names:[...prevState.names,name]}))
+  showNumOfGames=(game)=>{
+  this.setState(prevState=>({users:[...prevState.users,game]}))
   }
 
  
@@ -42,7 +41,7 @@ class App extends Component {
     return ( 
       <div>
       <form class="form-container"  onSubmit={this.handleSubmit}>
-         <CreateNewUser onAdding={this.addUser} onToggle={this.handleToggleEnd} />
+         <CreateNewUser onAdding={this.addUser} onToggle={this.handleToggleEnd} onShowing={this.showNumOfGames} />
          
 
       </form>
@@ -50,20 +49,28 @@ class App extends Component {
   <tr>
     <th>Name</th>
     <th>UserName</th>
-  </tr>
-  <tr>
-  <td>
-    <ol>
-{this.state.users.map((item, index) => <li key={index}>{item.firstName}{item.lastName}</li>)}
-</ol>
-</td>
-<td>
-  <ol>
-{this.state.users.map((item, index) => <li key={index}>{item.username}</li>)}
-</ol>
-</td>
     
   </tr>
+  
+ <tr> 
+<td>
+{this.state.users.map((item, index) => <tr key={index}>{item.firstName}{item.lastName}</tr>
+  )}
+
+</td>
+
+
+
+<td>
+{this.state.users.map((item, index) => <tr key={index}>{item.username}</tr>)}
+
+</td>
+num of games:
+<td>
+
+{this.state.users.map((item, index) => <tr key={index}>{item.numOfGames}</tr>)}
+</td>
+</tr>
   
 </table>
 

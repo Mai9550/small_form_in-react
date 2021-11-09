@@ -7,7 +7,10 @@ class CreateNewUser extends React.Component {
       lastName: '',
       username: '',
     },
-    ToggleIn:false
+    ToggleIn:false,
+    game:{
+      numOfGames:0
+    },
   };
 
 
@@ -46,6 +49,14 @@ class CreateNewUser extends React.Component {
     this.props.onAdding(this.state.user);
   };
 
+  showGames = event => {
+    
+    
+
+    this.props.onShowing(this.state.game)
+    
+  }
+
  
   handleToggleStart=()=> {
     
@@ -57,15 +68,25 @@ class CreateNewUser extends React.Component {
   handleToggleEnd=()=> {
     this.setState(prevState=>({ToggleIn:false}));
   }
- 
+ handleNumOfGames=()=>{
+  this.setState({
+    game: {
+      ...this.state.game,
+      numOfGames: "*/"
+    }
+  })
+ }
 
   render() {
 
     const ToggleIn = this.state.ToggleIn;
+    
     if (!ToggleIn) {
       button =   <button class="w3-btn w3-blue-grey" onClick={() => {
         this.handleToggleStart();
+        this.handleNumOfGames();
       }} >Hide number of games played</button>
+
   
     } else {
   
@@ -96,6 +117,7 @@ class CreateNewUser extends React.Component {
 
 <button class="w3-btn w3-blue-grey" onClick={() => {
         this.addUser();
+        this.showGames();
       }} >Register</button>
 
         {button}
