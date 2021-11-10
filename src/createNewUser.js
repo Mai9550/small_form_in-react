@@ -79,14 +79,6 @@ class CreateNewUser extends React.Component {
   
   
 
-  showGames = event => {
-    
-    
-
-  
-    
-  }
-
  
   handleToggleStart=()=> {
     
