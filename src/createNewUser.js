@@ -14,7 +14,14 @@ class CreateNewUser extends React.Component {
   };
 
 
-  
+  handleToggleEnd=()=> {
+    this.setState({
+      game: {
+        ...this.state.game,
+        numOfGames: 0
+      }
+    })
+  }  
 
   handleFirstName = event => {
     
@@ -47,7 +54,27 @@ class CreateNewUser extends React.Component {
   addUser = event => {
    
     this.props.onAdding(this.state.user);
+   
+   
   };
+
+ 
+  handleSubmit=(event)=> {  
+    event.preventDefault();
+    let currUsers=this.props.users;
+    
+    for(let currUser of currUsers){
+    if(this.state.user.username===currUser){
+
+ alert("user already exists")
+    
+    
+
+    }
+  }
+  } 
+  
+  
 
   showGames = event => {
     
@@ -64,10 +91,14 @@ class CreateNewUser extends React.Component {
     this.setState({ToggleIn:true});
   }
  
-
-  handleToggleEnd=()=> {
-    this.setState(prevState=>({ToggleIn:false}));
+  handleToggleAgain=()=> {
+    
+    
+    this.setState({ToggleIn:false});
   }
+ 
+
+ 
  handleNumOfGames=()=>{
   this.setState({
     game: {
@@ -75,6 +106,7 @@ class CreateNewUser extends React.Component {
       numOfGames: "*/"
     }
   })
+
  }
 
   render() {
@@ -88,13 +120,18 @@ class CreateNewUser extends React.Component {
       }} >Hide number of games played</button>
 
   
-    } else {
+    } else if(ToggleIn){
   
-      button = <LoginButton onClick={()=>this.handleToggleEnd()} />;
+      button =  <button class="w3-btn w3-blue-grey" onClick={()=>{
+        this.handleToggleAgain();
+        this.handleToggleEnd();
+        
+        }}  >Show number of games played</button>
     }
 
     return (
       <div>
+         <form class="form-container"  onSubmit={this.handleSubmit}>
             <label>First Name</label>
         <input class="w3-input" 
       type="text"
@@ -116,24 +153,21 @@ class CreateNewUser extends React.Component {
         onChange={this.handleUserName}/>
 
 <button class="w3-btn w3-blue-grey" onClick={() => {
-        this.addUser();
+        this.addUser(this.state.user.username);
         this.showGames();
+
       }} >Register</button>
 
         {button}
+        </form>
       </div>
 
       
     );
     
-    function LoginButton(props) {
-      return (
-        <button class="w3-btn w3-blue-grey">Show number of games played</button>
-      );
-    }
+   
   }
+
 }
-
-
 
 export default CreateNewUser;

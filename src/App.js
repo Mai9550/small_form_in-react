@@ -15,36 +15,35 @@ class App extends Component {
   
   state = {
    users: [],
+   
   };
   
   addUser=(user)=> {
+
   this.setState(prevState=>({users:[...prevState.users,user]}))
   
+   
   }
   
   
 
-  handleSubmit=(event)=> {  
-    event.preventDefault();
-  }
   
   showNumOfGames=(game)=>{
-  this.setState(prevState=>({users:[...prevState.users,game]}))
+  this.setState(prevState=>({users:[...prevState.users,game]}));
   }
 
  
-  
-  
+ 
   
   render() {
     
     return ( 
       <div>
-      <form class="form-container"  onSubmit={this.handleSubmit}>
-         <CreateNewUser onAdding={this.addUser} onToggle={this.handleToggleEnd} onShowing={this.showNumOfGames} />
+     
+         <CreateNewUser onAdding={this.addUser} onToggle={this.handleToggleEnd} onShowing={this.showNumOfGames} users={this.state.users} />
          
 
-      </form>
+     
       <table>
   <tr>
     <th>Name</th>
