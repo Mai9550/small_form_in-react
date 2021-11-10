@@ -53,25 +53,28 @@ class CreateNewUser extends React.Component {
 
   addUser = event => {
    
+    let currUsers=this.props.users;
+    let availability= currUsers.find(user=>user.username===this.state.user.username)
+     if(availability){
+     
+ 
+  alert("user already exists")
+     }else{
+       
     this.props.onAdding(this.state.user);
-   
-   
+    this.props.onShowing(this.state.game)
+     }
   };
 
  
   handleSubmit=(event)=> {  
     event.preventDefault();
-    let currUsers=this.props.users;
-    
-    for(let currUser of currUsers){
-    if(this.state.user.username===currUser){
-
- alert("user already exists")
+  
     
     
 
-    }
-  }
+    
+  
   } 
   
   
@@ -80,7 +83,7 @@ class CreateNewUser extends React.Component {
     
     
 
-    this.props.onShowing(this.state.game)
+  
     
   }
 
